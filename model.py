@@ -1,6 +1,11 @@
 """Models and database functions for SugarCoins project."""
 
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
+from sqlalchemy_utils import (
+    create_database,
+    database_exists,
+)
 
 # This is the connection to the PostgreSQL database; we're getting
 # this through the Flask-SQLAlchemy helper library. On this, we can
@@ -128,9 +133,15 @@ def connect_to_db(app):
     """Connect the database to our Flask app."""
 
     # Configure to use our PostgreSQL database
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///sugarcoins'
+    uri = 'postgresql://postgres@localhost/sugarcoins'
+    app.config['SQLALCHEMY_DATABASE_URI'] = uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
+
+    engine = create_engine(uri)
+    if not database_exists(engine.url):
+        create_database(engine.url)
+
     db.init_app(app)
 
 
