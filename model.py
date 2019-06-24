@@ -149,29 +149,30 @@ def connect_to_db(app):
     # automatically seed the database if we just created it
     if seed:
         db.create_all()
-        # import cycle
-        from seed import (
-            load_gender,
-            load_users,
-            load_food,
-            load_sugar_intake,
-            load_weight,
-            load_weight_two,
-            load_weight_three,
-            load_glucose,
-            load_glucose_two,
-            load_glucose_three,
-        )
-        load_gender() # here we loaded Gender first
-        load_users()
-        load_food()
-        load_sugar_intake()
-        load_weight()
-        load_weight_two()
-        load_weight_three()
-        load_glucose()
-        load_glucose_two()
-        load_glucose_three()
+        if app.debug:
+            # import cycle
+            from seed import (
+                load_gender,
+                load_users,
+                load_food,
+                load_sugar_intake,
+                load_weight,
+                load_weight_two,
+                load_weight_three,
+                load_glucose,
+                load_glucose_two,
+                load_glucose_three,
+            )
+            load_gender() # here we loaded Gender first
+            load_users()
+            load_food()
+            load_sugar_intake()
+            load_weight()
+            load_weight_two()
+            load_weight_three()
+            load_glucose()
+            load_glucose_two()
+            load_glucose_three()
 
 
 if __name__ == "__main__":
