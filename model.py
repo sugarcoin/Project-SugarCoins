@@ -133,7 +133,7 @@ def connect_to_db(app):
     """Connect the database to our Flask app."""
 
     # Configure to use our PostgreSQL database
-    uri = 'postgresql://postgres@localhost/sugarcoins'
+    uri = 'postgresql://postgres@db/sugarcoins'
     app.config['SQLALCHEMY_DATABASE_URI'] = uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app

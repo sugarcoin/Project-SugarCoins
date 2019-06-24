@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:9.6
+    environment:
+      POSTGRES_PASSWORD: ""
+  web:
+    build: .
+    command: python3 server.py
+    volumes:
+      - .:/sugarcoins
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
