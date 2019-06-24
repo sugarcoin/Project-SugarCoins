@@ -2,7 +2,7 @@ version: '3'
 
 services:
   db:
-    image: postgres:9.6
+    image: postgres:11
     environment:
       POSTGRES_PASSWORD: ""
   web:
